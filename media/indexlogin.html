@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lag="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width-device-width, initial-scale-1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="projet1.css">
+</head>
+
+<body>
+    <div class="loginform">
+        <img src="https://drive.google.com/uc?export=view&id=19uw0218Qy9JI8gN52Xh9BYD108bWIKay" alt="">
+        <h1>Login Form</h1>
+        <form method="POST">
+            <label for="username">Username</label>
+            <input type="username" name="username" placeholder="Type your username">
+            <label for="password">Password</label> 
+            <input type="password" name="password" placeholder="Type your Password">
+            <input type="submit" name="submit" value="Login">
+            <a href="a">Forgot password?</a>
+        </form>
+    </div>
+    <div id="dataDisplay" style="display:none;">
+        <h1 style="color:black;font-size:18px">Welcome</h1>
+      </div>
+    <script>
+        var button = document.getElementById('buttonLogin');
+        button.addEventListener('click',loginUser);
+
+        function loginUser(e)
+        {
+          e.preventDefault;
+          var username = document.getElementById('username').value;
+          var password = document.getElementById('password').value;
+          google.script.run.withSuccessHandler(function(output) {
+            if(output=="TRUE"){
+              document.getElementById("loginDisplay").style.display = "none";
+              document.getElementById('dataDisplay').style.display = "block";
+              document.body.style.backgroundImage = "url('https://drive.google.com/uc?export=view&id=17fg2IipL9JG4ixL49SvpWiF4tkgeDaYo')"
+            
+            }
+            else if(output=="FALSE"){
+              button.textcontent = "Error";
+              button.style.background = "red";
+              document.getElementById('errorMessage').innerHTML = "Gagal Login, username dan password tidak valid";
+            }
+          }).checklogin(username, password);
+
+        }
+     </script>
+</body>
+
+</html>
